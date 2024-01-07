@@ -34,8 +34,8 @@ export const SaveButton = ({ formik }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const uniqueAttributeMap = {
-    book: formik.values.weight + "KG",
-    dvd: formik.values.size + " MB",
+    book: "Weight :" + formik.values.weight + "KG",
+    dvd: "Size :" + formik.values.size + " MB",
     furniture:
       "WxHxL: " +
       formik.values.width +

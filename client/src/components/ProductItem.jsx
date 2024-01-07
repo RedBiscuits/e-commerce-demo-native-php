@@ -3,6 +3,21 @@ import { Checkbox, FormControlLabel, FormGroup, Typography, useTheme } from '@mu
 
 function ProductItem({ item, onCheckboxChange }) {
   const theme = useTheme();
+
+  let attributes = '';
+
+
+  if(item.unique_attribute){
+    attributes = item.unique_attribute
+  }else {
+    if (item.attributes.length == 1) {
+      attributes = item.attributes.map((attribute) => attribute.name + ' : ' + attribute.value).join(', ');
+    } else {
+      attributes = "WxHxL : " + item.attributes.map((attribute) => attribute.value);
+    }
+  }
+  
+
   return (
     <div>
       <FormGroup
@@ -27,7 +42,7 @@ function ProductItem({ item, onCheckboxChange }) {
           <Typography sx={{ color: theme.palette.primary[500], textAlign: 'center' }}> {item.sku}</Typography>
           <Typography sx={{ color: theme.palette.primary[500], textAlign: 'center' }}> {item.name}</Typography>
           <Typography sx={{ color: theme.palette.primary[500], textAlign: 'center' }}> {item.price}</Typography>
-          <Typography sx={{ color: theme.palette.primary[500], textAlign: 'center' }}>{item.unique_attribute}</Typography>
+          <Typography sx={{ color: theme.palette.primary[500], textAlign: 'center' }}>{attributes}</Typography>
         </div>
       </FormGroup>
     </div>

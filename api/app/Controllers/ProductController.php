@@ -30,6 +30,7 @@ class ProductController extends Controller
 
         // Get product type and uppercase first letter
         $product = $this->model(ucfirst($data['productType']));
+        
         $product->add($data);
     }
 

@@ -34,6 +34,21 @@ export const initialValues = {
 
 export function addProduct(values) {
   console.log(values)
+
+  let attributes = [];
+
+  let productType = values.selectedOption.toLowerCase();
+
+  if (productType.toLowerCase() === "dvd") {
+    attributes.push({ name: "Size", value: values.size });
+  } else if (productType.toLowerCase() === "furniture") {
+    attributes.push({ name: "Width", value: values.width });
+    attributes.push({ name: "Height", value: values.height });
+    attributes.push({ name: "Length", value: values.length });
+  } else if (productType.toLowerCase() === "book") {
+    attributes.push({ name: "Weight", value: values.weight });
+  }
+
   return axios
     .post(
       "http://localhost:8000/add-product",
@@ -41,12 +56,8 @@ export function addProduct(values) {
         sku: values.sku,
         name: values.name,
         price: values.price.substr(1),
-        optionSelected: values.selectedOption.toLowerCase(),
-        weight: values.weight,
-        length: values.length,
-        height: values.height,
-        width: values.width,
-        size: values.size,
+        productType: productType,
+        attributes: attributes,
       },
       {
         headers: {
