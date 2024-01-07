@@ -126,10 +126,11 @@ class Product extends Database
      */
     public function delete(array $request)
     {
-        foreach ($request as $productId) {
+        foreach ($request['ids'] as $productSku) {
+
             // Use parameters to prevent SQL Injection
-            $product = $this->pdo->prepare("DELETE FROM $this->tableName WHERE id = :id");
-            $product->bindParam('id', $productId);
+            $product = $this->pdo->prepare("DELETE FROM $this->tableName WHERE sku = :sku");
+            $product->bindParam('sku', $productSku);
             $product->execute();
         }
     }

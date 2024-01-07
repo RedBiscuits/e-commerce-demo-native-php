@@ -28,6 +28,8 @@ class Router
 
     function go()
     {
+        header("Access-Control-Allow-Origin: *");
+        
         $path = $this->request->getPath();
         $method = $this->request->getMethod();
 

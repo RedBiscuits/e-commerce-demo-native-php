@@ -80,9 +80,9 @@ export const MassDeleteButton = () => {
   const handleMassDeleteClick = () => {
     axios
       .post(
-        "http://localhost:3000/asd/product/delete",
+        "http://localhost:8000/delete-products",
         {
-          ids: JSON.stringify(selectedIds.map((product) => product.sku)),
+          ids: selectedIds.map((product) => product.sku),
         },
         {
           headers: {

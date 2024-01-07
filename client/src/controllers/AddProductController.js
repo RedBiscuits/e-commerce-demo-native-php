@@ -36,7 +36,7 @@ export function addProduct(values) {
   console.log(values)
   return axios
     .post(
-      "http://localhost:3000/asd/product/create",
+      "http://localhost:8000/add-product",
       {
         sku: values.sku,
         name: values.name,
@@ -50,7 +50,7 @@ export function addProduct(values) {
       },
       {
         headers: {
-          "Content-Type": "application/json",
+          "Content-Type": "application/x-www-form-urlencoded",
         },
       }
     )
