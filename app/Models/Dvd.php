@@ -6,14 +6,9 @@ class Dvd extends Product
 {
     public function add($request)
     {
-        // Set attributes
-        $request['attributes'] = array();
-
-        // Add attributes to the array
-        $attribute1 = array('name' => 'Size:', 'value' => $request['size'] . ' MB');
-    
-        $request['attributes'][] = $attribute1;
         
+        $request['attributes'][0]['value'] = $request['attributes'][0]['value'] . 'MB';
+
         $this->create($request);
     }
 }

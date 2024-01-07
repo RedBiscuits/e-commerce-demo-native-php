@@ -88,19 +88,23 @@ VALUES
   (5, 'GGWP0007', 'War and Peace', 20.00),
   (8, 'GGWP0008', 'War and Peace', 20.00),
   (9, 'GGWP0009', 'War and Peace', 20.00),
-  (10, 'GGWP0010', 'War and Peace', 20.00);
+  (10, 'GGWP0010', 'War and Peace', 20.00),
+  (11, 'FUR20', 'Disk', 50.00);
 
 INSERT INTO
   `attributes` (`product_id`, `name`, `value`)
 VALUES
-  (1, 'Weight', '700 MB'),
-  (2, 'Weight', '700 MB'),
-  (3, 'Weight', '700 MB'),
-  (4, 'Weight', '700 MB'),
+  (1, 'Size', '700 MB'),
+  (2, 'Size', '700 MB'),
+  (3, 'Size', '700 MB'),
+  (4, 'Size', '700 MB'),
   (5, 'Weight', '2KG'),
   (8, 'Weight', '2KG'),
   (9, 'Weight', '2KG'),
-  (10, 'Weight', '2KG');
+  (10, 'Weight', '2KG'),
+  (11, 'Width', '10'),
+  (11, 'Height', '20'),
+  (11, 'Length', '40');
 
 /*!40000 ALTER TABLE `products` ENABLE KEYS */
 ;

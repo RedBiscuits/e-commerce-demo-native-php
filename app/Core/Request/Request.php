@@ -31,7 +31,7 @@ class Request
         return $method;
     }
 
-    public function getParams(): array
+    private function getParams(): array
     {
         $data = $_REQUEST;
 
