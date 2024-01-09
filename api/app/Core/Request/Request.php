@@ -31,18 +31,21 @@ class Request
         return $method;
     }
 
+
     private function getParams(): array
     {
-        $data = $_REQUEST;
+        $sanitizedData = [];
 
+        $data = $_REQUEST;
+    
         foreach ($data as $key => $value) {
             if (is_string($value)) {
-                $this->$key = htmlspecialchars(stripslashes($value));
+                $sanitizedData[$key] = htmlspecialchars(stripslashes($value));
             } else {
-                $this->$key = $value;
+                $sanitizedData[$key] = $value;
             }
         }
-
-        return $data;
+    
+        return $sanitizedData;
     }
 }

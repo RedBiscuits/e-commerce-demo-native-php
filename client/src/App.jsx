@@ -19,7 +19,7 @@ function App() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    axios.get("http://localhost:8000/")
+    axios.get("http://localhost/")
       .then((res) => {
         console.log(res)
         dispatch(setProductsData(res.data));

@@ -51,7 +51,7 @@ export function addProduct(values) {
 
   return axios
     .post(
-      "http://localhost:8000/add-product",
+      "http://localhost/add-product",
       {
         sku: values.sku,
         name: values.name,
