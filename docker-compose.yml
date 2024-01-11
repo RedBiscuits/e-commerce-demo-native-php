@@ -10,9 +10,9 @@ services:
       dockerfile: Dockerfile
     
     volumes:
-      - ./api:/var/www/html
+      - ./api:/var/www/html/scandiweb-junior-test-task
     ports:
-      - 80:80
+      - 8000:8000
     depends_on:
       - mysql
 

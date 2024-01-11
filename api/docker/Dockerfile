@@ -9,7 +9,7 @@ RUN docker-php-ext-install pdo_mysql
 
 COPY apache.conf /etc/apache2/sites-available/000-default.conf
 
-WORKDIR /var/www/html
+WORKDIR /var/www/html/scandiweb-junior-test-task
 
 
 
