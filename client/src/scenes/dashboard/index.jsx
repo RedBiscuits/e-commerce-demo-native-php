@@ -5,11 +5,23 @@ import * as reducer from "controllers/SelectedItemsReducer";
 import Navbar from "components/Navbar";
 import { MassDeleteButton, AddButton } from "components/NavButtonsFactory";
 import Footer from "components/Footer";
+import { setProductsData } from "controllers/ProductsReducer.mjs";
+import { useEffect , useState } from "react";
+import axios from "axios";
 
 const Dashboard = () => {
   const dispatch = useDispatch();
+  const [products, setProducts] = useState([]);
+
+  useEffect(() => {
+    axios.get("http://localhost/").then((res) => {
+      console.log(res);
+      dispatch(setProductsData(res.data));
+      setProducts(res.data ?? []);
+    });
+  }, [dispatch]);
+
   const selectedIds = useSelector((s) => s.myFeature);
-  const products = useSelector((state) => state.products);
 
   const handleCheckboxChange = (productSKU) => {
     const productExists = selectedIds.some(
@@ -21,8 +33,8 @@ const Dashboard = () => {
       dispatch(reducer.addProduct(productSKU));
     }
   };
-  
-  console.log(products);
+
+  console.log("products L : "  , products);
 
   return (
     <div>
