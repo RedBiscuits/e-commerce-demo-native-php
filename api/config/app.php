@@ -4,7 +4,7 @@
 define('DB_HOST', 'mysql');
 
 // For local Development
-// define('DB_HOST', 'db');
+// define('DB_HOST', 'localhost');
 
 define('DB_PORT', '3306');
 define('DB_NAME', 'scandiweb_junior_test');

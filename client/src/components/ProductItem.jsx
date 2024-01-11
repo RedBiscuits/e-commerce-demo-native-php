@@ -41,7 +41,7 @@ function ProductItem({ item, onCheckboxChange }) {
         <div style={{ flex: 1, marginLeft: '1rem', marginTop: '1.2rem' }}>
           <Typography sx={{ color: theme.palette.primary[500], textAlign: 'center' }}> {item.sku}</Typography>
           <Typography sx={{ color: theme.palette.primary[500], textAlign: 'center' }}> {item.name}</Typography>
-          <Typography sx={{ color: theme.palette.primary[500], textAlign: 'center' }}> {item.price}</Typography>
+          <Typography sx={{ color: theme.palette.primary[500], textAlign: 'center' }}> {item.price + "$"}</Typography>
           <Typography sx={{ color: theme.palette.primary[500], textAlign: 'center' }}>{attributes}</Typography>
         </div>
       </FormGroup>
