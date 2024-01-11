@@ -9,6 +9,7 @@ import { validateInput } from "controllers/AddProductController";
 import { addProduct } from "controllers/AddProductController";
 import { addProductReducer } from "controllers/ProductsReducer.mjs";
 
+
 export const AddButton = () => {
   const navigate = useNavigate();
 
@@ -17,6 +18,7 @@ export const AddButton = () => {
   };
   return <CustomButton text={"ADD"} onClick={handleAddClick}></CustomButton>;
 };
+
 
 export const CancelButton = () => {
   const navigate = useNavigate();
@@ -28,6 +30,7 @@ export const CancelButton = () => {
     <CustomButton text={"Cancel"} onClick={handleCancelClick}></CustomButton>
   );
 };
+
 
 export const SaveButton = ({ formik }) => {
   const products = useSelector((state) => state.products);
@@ -44,6 +47,8 @@ export const SaveButton = ({ formik }) => {
       "x" +
       formik.values.length,
   };
+
+
   const handleSaveClick = () => {
     try {
       validateInput(formik);

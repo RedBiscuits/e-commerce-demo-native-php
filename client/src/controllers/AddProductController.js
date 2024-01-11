@@ -1,5 +1,6 @@
 import * as Yup from "yup";
 import axios from "axios";
+import typeHandler from "handlers/AddProductHandler";
 
 export function getValidationObject(options) {
   const productValidationSchema = Yup.object({
@@ -33,20 +34,16 @@ export const initialValues = {
 };
 
 export function addProduct(values) {
-  console.log(values)
+  console.log(values);
 
   let attributes = [];
 
   let productType = values.selectedOption.toLowerCase();
 
-  if (productType.toLowerCase() === "dvd") {
-    attributes.push({ name: "Size", value: values.size });
-  } else if (productType.toLowerCase() === "furniture") {
-    attributes.push({ name: "Width", value: values.width });
-    attributes.push({ name: "Height", value: values.height });
-    attributes.push({ name: "Length", value: values.length });
-  } else if (productType.toLowerCase() === "book") {
-    attributes.push({ name: "Weight", value: values.weight });
+  const handler = typeHandler[productType];
+
+  if (handler) {
+    attributes.push(...handler(values));
   }
 
   return axios
@@ -66,7 +63,7 @@ export function addProduct(values) {
       }
     )
     .then((response) => {
-      console.log(response.status)
+      console.log(response.status);
       if (response.status === 200) {
         return true;
       } else {
