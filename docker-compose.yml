@@ -4,34 +4,32 @@ services:
 
   backend:
     image: php:apache
-    container_name: scandiweb_phpApache
+    container_name: scandiweb_test_phpApache
     build: 
       context: ./api/docker
       dockerfile: Dockerfile
     
     volumes:
-      - ./api:/var/www/html/scandiweb-junior-test-task
+      - ./api:/var/www/scandiweb-junior-test-task
     ports:
-      - 8000:8000
-    depends_on:
-      - mysql
+      - 8000:80
 
   mysql: 
     image: mysql:latest
-    container_name: scandiweb_mysql
+    container_name: scandiweb_test_mysql
     environment:
       - MYSQL_DATABASE=scandiweb_junior_test
       - MYSQL_USER=php_docker
-      - MYSQL_PASSWORD=password # this should live in a env var
-      - MYSQL_ALLOW_EMPTY_PASSWORD=1 # equivalent to True
+      - MYSQL_PASSWORD=password
+      - MYSQL_ALLOW_EMPTY_PASSWORD=1
     volumes:
       - "./api/db:/docker-entrypoint-initdb.d" # this is how we persist a sql db even when container stops
     ports:
-      - 3306:3306
+      - 3307:3306
 
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
-    container_name: scandiweb_phpmyadmin
+    container_name: scandiweb_test_phpmyadmin
     ports:
       - 8001:80
     environment:
