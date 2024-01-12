@@ -48,7 +48,7 @@ export function addProduct(values) {
 
   return axios
     .post(
-      "http://http://195.35.48.130:8000/add-product",
+      "http://195.35.48.130:8000/add-product",
       {
         sku: values.sku,
         name: values.name,
