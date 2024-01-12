@@ -4,7 +4,7 @@ import axios from 'axios';
 export const MassDelete = (selectedIds, dispatch) => {
     const promises = [];
   
-    const { promise } = axios.post('http://localhost:8000/delete-products', {
+    const { promise } = axios.post('http://195.35.48.130:8000/delete-products', {
       ids: selectedIds
     }, {
       headers: {

@@ -14,7 +14,7 @@ const Dashboard = () => {
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
-    axios.get("http://localhost:8000").then((res) => {
+    axios.get("http://195.35.48.130:8000").then((res) => {
       console.log(res);
       dispatch(setProductsData(res.data));
       setProducts(res.data ?? []);
