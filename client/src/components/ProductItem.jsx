@@ -11,14 +11,13 @@ function ProductItem({ item, onCheckboxChange }) {
   const theme = useTheme();
 
   let attributes = "";
-
   if (item.attributes.length == 1) {
     attributes = item.attributes
       .map((attribute) => attribute.name + " : " + attribute.value)
       .join(" ");
   } else {
     attributes =
-      "WxHxL : " + item.attributes.map((attribute) => attribute.value);
+      "WxHxL : " + item.attributes.map((attribute) => attribute.value).join("");
   }
 
   return (
