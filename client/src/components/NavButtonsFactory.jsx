@@ -57,14 +57,14 @@ export const MassDeleteButton = () => {
   const dispatch = useDispatch();
 
   const handleMassDeleteClick = async () => {
-    const checkboxes = document.getElementsByClassName(".delete-checkbox");
+    const checkboxes = document.getElementsByClassName("delete-checkbox");
     const selectedKeys = {};
 
     for (let i = 0; i < checkboxes.length; i++) {
       const checkbox = checkboxes[i];
       const id = checkbox.attributes["dataKey"].value;
 
-      if (checkbox.children[0].checked) {
+      if (checkbox.children[0].checked || checkbox.checked  ) {
         selectedKeys[id] = id;
       } else {
       }
