@@ -20,21 +20,6 @@ const Dashboard = () => {
     });
   }, [dispatch]);
 
-  const selectedIds = useSelector((s) => s.myFeature);
-
-  const handleCheckboxChange = (productSKU) => {
-    const productExists = selectedIds.some(
-      (product) => product.sku === productSKU
-    );
-    if (productExists) {
-      dispatch(reducer.removeProduct(productSKU));
-    } else {
-      dispatch(reducer.addProduct(productSKU));
-    }
-  };
-
-
-  
   return (
     <div>
       <Navbar
@@ -42,7 +27,7 @@ const Dashboard = () => {
         leftButton={<AddButton />}
         title={"Product List"}
       />
-      <ProductList onCheckboxChange={handleCheckboxChange} />
+      <ProductList />
       <Footer />
     </div>
   );

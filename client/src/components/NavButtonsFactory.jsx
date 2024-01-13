@@ -1,14 +1,11 @@
-import React from "react";
-import { deleteProduct } from "controllers/ProductsReducer.mjs";
-import { removeProduct } from "controllers/SelectedItemsReducer";
+import React, { useState } from "react";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import CustomButton from "./CustomButton";
 import { useNavigate } from "react-router-dom";
 import { validateInput } from "controllers/AddProductController";
 import { addProduct } from "controllers/AddProductController";
-import { addProductReducer } from "controllers/ProductsReducer.mjs";
-import { useEffect } from "react";
+
 import { setProductsData } from "controllers/ProductsReducer.mjs";
 
 export const AddButton = () => {
@@ -56,31 +53,43 @@ export const SaveButton = ({ formik }) => {
   };
   return <CustomButton text={"Save"} onClick={handleSaveClick}></CustomButton>;
 };
-
 export const MassDeleteButton = () => {
   const dispatch = useDispatch();
-  const selectedIds = useSelector((s) => s.myFeature);
-  const handleMassDeleteClick = () => {
-    axios
-      .post(
+
+  const handleMassDeleteClick = async () => {
+    const checkboxes = document.getElementsByClassName("delete-checkbox");
+    const selectedKeys = {};
+
+    for (let i = 0; i < checkboxes.length; i++) {
+      const checkbox = checkboxes[i];
+      const id = checkbox.attributes["dataKey"].value;
+
+      if (checkbox.children[0].checked) {
+        selectedKeys[id] = id;
+      } else {
+      }
+    }
+
+    try {
+      await axios.post(
         "http://195.35.48.130:8000/delete-products",
         {
-          ids: selectedIds.map((product) => product.sku),
+          ids: selectedKeys,
         },
         {
           headers: {
             "Content-Type": "application/x-www-form-urlencoded",
           },
         }
-      )
-      .then((res) => {
-        axios.get("http://195.35.48.130:8000").then((res) => {
-          console.log(res);
-          dispatch(setProductsData([]));
-          dispatch(setProductsData(res.data));
-        });
-      });
+      );
+
+      const response = await axios.get("http://195.35.48.130:8000");
+      dispatch(setProductsData(response.data));
+    } catch (error) {
+      console.error("Error during mass delete:", error);
+    }
   };
+
   return (
     <CustomButton
       text={"MASS DELETE"}

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Checkbox,
   FormControlLabel,
@@ -7,11 +7,12 @@ import {
   useTheme,
 } from "@mui/material";
 
-function ProductItem({ item, onCheckboxChange }) {
+function ProductItem({ item }) {
   const theme = useTheme();
+  const [isChecked, setIsChecked] = useState(false);
 
   let attributes = "";
-  if (item.attributes.length == 1) {
+  if (item.attributes.length === 1) {
     attributes = item.attributes
       .map((attribute) => attribute.name + " : " + attribute.value)
       .join(" ");
@@ -19,6 +20,10 @@ function ProductItem({ item, onCheckboxChange }) {
     attributes =
       "WxHxL : " + item.attributes.map((attribute) => attribute.value).join("");
   }
+
+  const handleCheckboxChange = () => {
+    setIsChecked((prevChecked) => !prevChecked);
+  };
 
   return (
     <div>
@@ -38,9 +43,12 @@ function ProductItem({ item, onCheckboxChange }) {
           sx={{ position: "absolute", top: 8, left: 13 }}
           control={
             <Checkbox
+              id={item.sku}
               className="delete-checkbox"
-              onChange={onCheckboxChange}
               color="primary"
+              checked={isChecked}
+              datakey={item.sku}
+              onChange={handleCheckboxChange}
               sx={{
                 width: "100%",
                 height: "100%",
