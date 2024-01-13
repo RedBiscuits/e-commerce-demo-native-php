@@ -8,7 +8,8 @@ import { useNavigate } from "react-router-dom";
 import { validateInput } from "controllers/AddProductController";
 import { addProduct } from "controllers/AddProductController";
 import { addProductReducer } from "controllers/ProductsReducer.mjs";
-
+import { useEffect } from "react";
+import { setProductsData } from "controllers/ProductsReducer.mjs";
 
 export const AddButton = () => {
   const navigate = useNavigate();
@@ -18,7 +19,6 @@ export const AddButton = () => {
   };
   return <CustomButton text={"ADD"} onClick={handleAddClick}></CustomButton>;
 };
-
 
 export const CancelButton = () => {
   const navigate = useNavigate();
@@ -31,11 +31,9 @@ export const CancelButton = () => {
   );
 };
 
-
 export const SaveButton = ({ formik }) => {
   const products = useSelector((state) => state.products);
   const navigate = useNavigate();
-
 
   const handleSaveClick = () => {
     try {
@@ -76,12 +74,11 @@ export const MassDeleteButton = () => {
         }
       )
       .then((res) => {
-        console.log(res);
-        for (let i = 0; i < selectedIds.length; i++) {
-          const sku = selectedIds[i].sku;
-          dispatch(deleteProduct(sku));
-          dispatch(removeProduct(sku));
-        }
+        axios.get("http://195.35.48.130:8000").then((res) => {
+          console.log(res);
+          dispatch(setProductsData([]));
+          dispatch(setProductsData(res.data));
+        });
       });
   };
   return (
