@@ -46,6 +46,8 @@ export function addProduct(values) {
     attributes.push(...handler(values));
   }
 
+  console.log(attributes);
+
   return axios
     .post(
       "http://195.35.48.130:8000/add-product",

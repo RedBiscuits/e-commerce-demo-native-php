@@ -35,18 +35,6 @@ export const CancelButton = () => {
 export const SaveButton = ({ formik }) => {
   const products = useSelector((state) => state.products);
   const navigate = useNavigate();
-  const dispatch = useDispatch();
-  const uniqueAttributeMap = {
-    book: "Weight :" + formik.values.weight + "KG",
-    dvd: "Size :" + formik.values.size + " MB",
-    furniture:
-      "WxHxL: " +
-      formik.values.width +
-      "x" +
-      formik.values.height +
-      "x" +
-      formik.values.length,
-  };
 
 
   const handleSaveClick = () => {
@@ -60,14 +48,6 @@ export const SaveButton = ({ formik }) => {
       }
       const res = addProduct(formik.values);
       if (res) {
-        const productData = {
-          sku: formik.values.sku,
-          name: formik.values.name,
-          price: formik.values.price.substr(1) + " $",
-          unique_attribute:
-            uniqueAttributeMap[formik.values.selectedOption.toLowerCase()],
-        };
-        dispatch(addProductReducer(productData));
         navigate("/");
       } else {
         throw new Error("Invalid data.");

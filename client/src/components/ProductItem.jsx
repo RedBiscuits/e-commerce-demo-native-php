@@ -15,7 +15,7 @@ function ProductItem({ item, onCheckboxChange }) {
   if (item.attributes.length == 1) {
     attributes = item.attributes
       .map((attribute) => attribute.name + " : " + attribute.value)
-      .join(", ");
+      .join(" ");
   } else {
     attributes =
       "WxHxL : " + item.attributes.map((attribute) => attribute.value);

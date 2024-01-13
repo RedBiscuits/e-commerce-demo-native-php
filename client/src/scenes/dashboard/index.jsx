@@ -6,18 +6,17 @@ import Navbar from "components/Navbar";
 import { MassDeleteButton, AddButton } from "components/NavButtonsFactory";
 import Footer from "components/Footer";
 import { setProductsData } from "controllers/ProductsReducer.mjs";
-import { useEffect , useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 
 const Dashboard = () => {
   const dispatch = useDispatch();
-  const [products, setProducts] = useState([]);
 
   useEffect(() => {
     axios.get("http://195.35.48.130:8000").then((res) => {
       console.log(res);
+      dispatch(setProductsData([]));
       dispatch(setProductsData(res.data));
-      setProducts(res.data ?? []);
     });
   }, [dispatch]);
 
@@ -34,8 +33,8 @@ const Dashboard = () => {
     }
   };
 
-  console.log("products L : "  , products);
 
+  
   return (
     <div>
       <Navbar
@@ -43,7 +42,7 @@ const Dashboard = () => {
         leftButton={<AddButton />}
         title={"Product List"}
       />
-      <ProductList data={products} onCheckboxChange={handleCheckboxChange} />
+      <ProductList onCheckboxChange={handleCheckboxChange} />
       <Footer />
     </div>
   );
