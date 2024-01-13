@@ -103,8 +103,8 @@ VALUES
   (8, 'Weight', '2KG'),
   (9, 'Weight', '2KG'),
   (10, 'Weight', '2KG'),
-  (11, 'Width', '10'),
-  (11, 'Height', '20'),
+  (11, 'Width', '10x'),
+  (11, 'Height', '20x'),
   (11, 'Length', '40');
 
 /*!40000 ALTER TABLE `products` ENABLE KEYS */
