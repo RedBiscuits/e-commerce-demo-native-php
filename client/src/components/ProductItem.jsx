@@ -44,7 +44,7 @@ function ProductItem({ item }) {
           control={
             <Checkbox
               id={item.sku}
-              className="delete-checkbox"
+              className=".delete-checkbox"
               color="primary"
               checked={isChecked}
               datakey={item.sku}
